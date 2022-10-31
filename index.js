@@ -1,32 +1,35 @@
-const posts = [
-    {
-        name: "Vincent van Gogh",
-        username: "vincey1853",
-        location: "Zundert, Netherlands",
-        avatar: "images/avatar-vangogh.jpg",
-        post: "images/post-vangogh.jpg",
-        comment: "just took a few mushrooms lol",
-        likes: 21
-    },
-    {
-        name: "Gustave Courbet",
-        username: "gus1819",
-        location: "Ornans, France",
-        avatar: "images/avatar-courbet.jpg",
-        post: "images/post-courbet.jpg",
-        comment: "i'm feelin a bit stressed tbh",
-        likes: 4
-    },
-        {
-        name: "Joseph Ducreux",
-        username: "jd1735",
-        location: "Paris, France",
-        avatar: "images/avatar-ducreux.jpg",
-        post: "images/post-ducreux.jpg",
-        comment: "gm friends! which coin are YOU stacking up today?? post below and WAGMI!",
-        likes: 152
-    }
-]
+import { posts } from './data.js';
 
+const postsContainer = document.getElementById('posts');
+let htmlPost = '';
 
+const createPostHTML = () => {
+  for (const post of posts) {
+    htmlPost += `
+        <section class="post">
+            <div class="post-header">
+                <img src=${post.avatar} />
+                <div class="artist-info">
+                    <h3 class="artist-name">${post.name}</h3>
+                    <p class="location">${post.location}</p>
+                </div>
+            </div>
+            <div class="post-body">
+                <img src=${post.post} alt=''>
+            </div>
+            <div class="post-footer">
+                <div class="post-icons">
+                    <img src='./images/icon-heart.png'>
+                    <img src='./images/icon-comment.png'>
+                    <img src='./images/icon-dm.png'>
+                </div>
+                <p class="post-likes">${post.likes} likes<p>
+                <p><span>${post.username}</span> ${post.comment}</p>
+            </div>
+        </section>
+    `;
+  }
+  postsContainer.innerHTML = htmlPost;
+};
 
+createPostHTML();
